@@ -25,6 +25,7 @@
     shellcheck.enable = true;
     ruff.enable = true;
     mypy.enable = true;
+    mypy.extraPackages = [pkgs.python310Packages.tomlkit];
     ripsecrets.enable = true;
     # vale.enable = true;
     yamlfmt.enable = true;

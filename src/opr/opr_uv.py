@@ -9,7 +9,7 @@ class UVVersionBumper(VersionBumper):
         def run(*args):
             return run_cmd("uv", "run", *args)
 
-        super().__init__()
+        super().__init__(run, run_cmd)
 
     def _find_old_version(self):
         with open("pyproject.tml", "rb") as f:

@@ -4,7 +4,10 @@ from .opr_uv import UVVersionBumper
 
 
 def bump():
-    arg = sys.argv[1]
+    if len(sys.argv) != 1:
+        arg = ""
+    else:
+        arg = sys.argv[1]
     match arg:
         case "poetry":
             b = PoetryVersionBumper()
