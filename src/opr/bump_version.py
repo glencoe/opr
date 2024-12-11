@@ -26,6 +26,9 @@ class VersionBumper(ABC):
             self._run_sys("git", "config", "set", "user.name", self._git_user)
             self._run_sys("git", "config", "set", "user.email", self._git_mail)
 
+    def __call__(self) -> None:
+        self.bump_version_and_tag()
+
     def bump_version_and_tag(self) -> None:
         if self.dry_run:
             print("dry run")

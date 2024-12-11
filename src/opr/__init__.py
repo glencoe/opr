@@ -4,7 +4,7 @@ from .opr_uv import UVVersionBumper
 
 
 def bump():
-    if len(sys.argv) != 1:
+    if len(sys.argv) != 2:
         arg = ""
     else:
         arg = sys.argv[1]
