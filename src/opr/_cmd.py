@@ -8,4 +8,4 @@ def run_cmd(*cmd) -> str:
     with Popen(cmd, stdout=PIPE, universal_newlines=True, bufsize=1) as p:
         for line in p.stdout:  # type: ignore
             buff.append(line)
-    return "\n".join(buff)
+    return "".join(buff)

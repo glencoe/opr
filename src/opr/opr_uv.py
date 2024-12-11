@@ -18,9 +18,9 @@ class UVVersionBumper(VersionBumper):
         self._old_version = self._config["project"]["version"]
 
     def _post_new_version_hook(self):
-        self._match_old_version_style()
+        self._prefix_v_if_present_in_old_version_scheme_read_from_pyproject()
 
-    def _match_old_version_style(self) -> None:
+    def _prefix_v_if_present_in_old_version_scheme_read_from_pyproject(self) -> None:
         if self._old_version.startswith("v") and not self._new_version.startswith("v"):
             self._new_version = f"v{self._new_version}"
         elif not self._old_version.startswith("v") and self._new_version.startswith(
