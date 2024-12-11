@@ -26,6 +26,9 @@ class VersionBumper(ABC):
             self._run_sys("git", "config", "set", "user.name", self._git_user)
             self._run_sys("git", "config", "set", "user.email", self._git_mail)
 
+    def _post_new_version_hook(self) -> None:
+        pass
+
     def __call__(self) -> None:
         self.bump_version_and_tag()
 
@@ -36,6 +39,7 @@ class VersionBumper(ABC):
         self._check_for_uncommitted_changes()
         self._find_old_version()
         self._find_new_version()
+        self._post_new_version_hook()
         print(f"updating from {self._old_version} to {self._new_version}")
         print("creating changelog")
         self._write_changelog()
