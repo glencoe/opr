@@ -17,7 +17,16 @@ class UVVersionBumper(VersionBumper):
             self._config = t.load(f)
         self._old_version = self._config["project"]["version"]
 
+    def _match_old_version_style(self) -> None:
+        if self._old_version.startswith("v") and not self._new_version.startswith("v"):
+            self._new_version = f"v{self._new_version}"
+        elif not self._old_version.startswith("v") and self._new_version.startswith(
+            "v"
+        ):
+            self._new_version = self._new_version[1:]
+
     def _bump_version(self):
+        self._match_old_version_style()
         self._config["project"]["version"] = self._new_version
         with open("pyproject.toml", "w") as f:
             t.dump(self._config, f)
