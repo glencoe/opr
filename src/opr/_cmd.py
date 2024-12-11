@@ -7,6 +7,5 @@ def run_cmd(*cmd) -> str:
     print("running:", " ".join(cmd))
     with Popen(cmd, stdout=PIPE, universal_newlines=True, bufsize=1) as p:
         for line in p.stdout:  # type: ignore
-            print(line, end="")
             buff.append(line)
     return "\n".join(buff)

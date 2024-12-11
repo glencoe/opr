@@ -15,10 +15,10 @@ class UVVersionBumper(VersionBumper):
         self._run_sys("pwd")
         with open("pyproject.toml", "rb") as f:
             self._config = t.load(f)
-        self._old_version = self._config.get("project").get("version")
+        self._old_version = self._config["project"]["version"]
 
     def _bump_version(self):
-        self._config.get("project").add("version", self._new_version)
+        self._config["project"]["version"] = self._new_version
         with open("pyproject.toml", "w") as f:
             t.dump(self._config, f)
 
